@@ -6,17 +6,17 @@ public class UI
 
     public void StartGeometricProgression()
     {
-        Greeting("What number is missing in the progression?");
-        Play(GenQuestionForGeometricProgression);
+        var name = Greeting("What number is missing in the progression?");
+        Play(GenQuestionForGeometricProgression, name);
     }
 
     public void StartSmallestCommonMultiple()
     {
-        Greeting("Find the smallest common multiple of given numbers.");
-        Play(GenQuestionForSmallestCommonMultiple);
+        var name = Greeting("Find the smallest common multiple of given numbers.");
+        Play(GenQuestionForSmallestCommonMultiple, name);
     }
 
-    private void Play(Func<(string, int)> qu)
+    private void Play(Func<(string, int)> qu, string name)
     {
         var request = "";
         do
@@ -34,8 +34,8 @@ public class UI
 
             if (!int.TryParse(request, out var number))
             {
-                Console.WriteLine("Incorrect format!");
-                Console.WriteLine($"Right answer: {answer}");
+
+                Console.WriteLine($"'{request}' is wrong answer ;(. Correct answer was '{answer}'.\r\nLet's try again, {name}!\r\n");
                 continue;
             }
 
@@ -45,21 +45,21 @@ public class UI
             }
             else
             {
-                Console.WriteLine("Incorrect!");
-                Console.WriteLine($"Right answer: {answer}");
+                Console.WriteLine($"'{request}' is wrong answer ;(. Correct answer was '{answer}'.\r\nLet's try again, {name}!\r\n");
             }
         } while (true);
 
         Console.WriteLine("END");
     }
 
-    private void Greeting(string str)
+    private string Greeting(string str)
     {
         Console.WriteLine("Welcome to the Brain Games!");
         Console.WriteLine("May I have your name? ");
         var name = Console.ReadLine();
         Console.WriteLine($"Hello, {name}!");
         Console.WriteLine(str);
+        return name;
     }
 
     private (string, int) GenQuestionForSmallestCommonMultiple()

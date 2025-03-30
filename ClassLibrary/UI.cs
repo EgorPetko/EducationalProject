@@ -59,7 +59,7 @@ public class UI
         var name = Console.ReadLine();
         Console.WriteLine($"Hello, {name}!");
         Console.WriteLine(str);
-        return name;
+        return name!;
     }
 
     private (string, int) GenQuestionForSmallestCommonMultiple()

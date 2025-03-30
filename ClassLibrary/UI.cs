@@ -2,7 +2,7 @@
 
 public class UI
 {
-    private string[] RuleForEnd = { "", "end" };
+    private readonly string[] RuleForEnd = ["", "end"];
 
     public void StartGeometricProgression()
     {
@@ -18,7 +18,7 @@ public class UI
 
     private void Play(Func<(string, int)> qu, string name)
     {
-        var request = "";
+        string request ;
         do
         {
             (string question, int answer) = qu();
@@ -26,7 +26,7 @@ public class UI
             Console.WriteLine($"Question: {question}");
             Console.WriteLine("Your answer: ");
 
-            request = Console.ReadLine();
+            request = Console.ReadLine()!;
             if (RuleForEnd.Contains(request))
             {
                 break;
@@ -52,7 +52,7 @@ public class UI
         Console.WriteLine("END");
     }
 
-    private string Greeting(string str)
+    private static string Greeting(string str)
     {
         Console.WriteLine("Welcome to the Brain Games!");
         Console.WriteLine("May I have your name? ");
@@ -79,7 +79,7 @@ public class UI
         return (str, Nok(arr));
     }
 
-    private int Nok(int[] number)
+    private static int Nok(int[] number)
     {
         var max = number.Max();
         var divider = 1;
